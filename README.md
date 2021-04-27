@@ -1,24 +1,40 @@
-# README
+##### Prerequisites
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The setups steps expect following tools installed on the system.
 
-Things you may want to cover:
+- Github
+- Ruby [3.0.0](https://www.ruby-lang.org/en/downloads/)
+- Rails [6.1.3](https://github.com/rails/rails)
+- PostgreSQL [13.2](https://www.postgresql.org/download/)
 
-* Ruby version
+##### 1. Check out the repository
 
-* System dependencies
+```bash
+git clone git@github.com:luiz-m-affonso/task_manager_api.git && cd task_manager_api
+```
 
-* Configuration
+##### 2. Dependencies and Environment Variables
 
-* Database creation
+Project dependencies
 
-* Database initialization
+```bash
+bundle install && yarn install && touch .env && echo '.env*' >> .gitignore # if not already in .gitignore
+```
 
-* How to run the test suite
+##### 3. Create and setup the database
 
-* Services (job queues, cache servers, search engines, etc.)
+Run the following commands to create and setup the database.
 
-* Deployment instructions
+```ruby
+rails db:create && rails db:migrate
+```
 
-* ...
+##### 4. Start the Rails server
+
+You can start the rails server using the command given below.
+
+```ruby
+rails s
+```
+
+And now you can visit the site with the URL http://localhost:3000
