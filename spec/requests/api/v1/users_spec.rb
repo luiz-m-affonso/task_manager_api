@@ -60,7 +60,7 @@ RSpec.describe 'Api::V1::Users', type: :request do
 
       it 'returns json data errors' do
         user_response = JSON.parse(response.body)
-        expect(user_response).to have_key(:errors)
+        expect(user_response).to have_key('email')
       end
     end
   end
