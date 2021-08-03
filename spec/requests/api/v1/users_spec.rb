@@ -14,8 +14,8 @@ RSpec.describe 'Api::V1::Users', type: :request do
 
     context 'when the user exists' do
       it 'returns the user' do
-        user_response = JSON.parse(response.body)
-        expect(user_response['id']).to eq(user_id)
+        user_response = JSON.parse(response.body, symbolize_names: true)
+        expect(user_response[:id]).to eq(user_id)
       end
 
       it 'return status 200' do
@@ -41,9 +41,9 @@ RSpec.describe 'Api::V1::Users', type: :request do
       let(:user_params) { attributes_for(:user) }
 
       it 'returns json data' do
-        json_response = JSON.parse(response.body)
+        user_response = JSON.parse(response.body, symbolize_names: true)
 
-        expect(json_response['email']).to eq(user_params[:email])
+        expect(user_response[:email]).to eq(user_params[:email])
       end
 
       it 'return status code 201' do
@@ -59,8 +59,8 @@ RSpec.describe 'Api::V1::Users', type: :request do
       end
 
       it 'returns json data errors' do
-        user_response = JSON.parse(response.body)
-        expect(user_response).to have_key('email')
+        user_response = JSON.parse(response.body, symbolize_names: true)
+        expect(user_response).to have_key(:email)
       end
     end
   end
