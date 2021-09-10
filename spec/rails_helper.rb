@@ -24,7 +24,7 @@ require "database_cleaner/active_record"
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
-# Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
+Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
 
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove these lines.
@@ -35,11 +35,14 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 
+
 RSpec.configure do |config|
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)
   end
+
+  config.include RequestSpecHelper, type: :request
 
   config.around(:each) do |example|
     DatabaseCleaner.cleaning do
